@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>UPDATE</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="./images/icons/flashcard_icon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/util.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body onload="func()">
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0 d-flex justify-content-center">
+				<form class="login0-form validate-form" method="post" action="/updatea">
+					<span class="login0-form-title">
+						UPDATE TASK
+					</span>
+
+					<div class="wrap-input0">
+						<textarea class="form-control" type="text" rows="3" name="description" placeholder="Description" autofocus="autofocus" required></textarea>
+					</div>
+
+					<span class="login0-form-title p-t-20 d-flex" style="justify-content: center; padding-bottom: 0px;">
+						<div class="wrap-input0" style="width: max-content;">
+							<input class="input0" type="date" name="deadline" style="max-width: 254px;" required>
+							<span class="symbol-input0">
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+							</span>
+						</div>
+					</span>
+
+					<span class="login0-form-title d-flex p-t-20" style="align-items: center; justify-content: center; padding-bottom: 15px; font-size: 20px;">
+						COMPLETED
+						<div style="padding-left: 20px;">
+							<label class="switch">
+								<input type="checkbox" name="status">
+								<span class="slider round"></span>
+							</label>
+						</div>
+					</span>
+					
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" name="sid" value="<%= task._id %>" type="submit">
+							UPDATE
+						</button>
+					</div>
+
+					<div class="text-center p-t-80">
+						<a class="txt2" href="/dashboard">
+							<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+                            GO TO HOME
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="./vendor/bootstrap/js/popper.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./vendor/select2/select2.min.js"></script>
+	<script src="./vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		function func() {
+			const months = {
+                    Jan: '01',
+                    Feb: '02',
+                    Mar: '03',
+                    Apr: '04',
+                    May: '05',
+                    Jun: '06',
+                    Jul: '07',
+                    Aug: '08',
+                    Sep: '09',
+                    Oct: '10',
+                    Nov: '11',
+                    Dec: '12',
+            }
+            
+			const stringArray = ("<%= task.date %>").split(" ");
+            x = stringArray[3] + "-" + months[stringArray[1]]   + "-" + stringArray[2];
+
+			var desc = document.querySelector('textarea[name="description"]');
+			var dateC = document.querySelector('input[name="deadline"]');
+			var check = document.querySelector('input[name="status"]');
+
+			desc.value = "<%= task.description %>";
+			dateC.value = x;
+			if("<%= task.completed %>" == 'false')
+				check.checked = false;
+			else if("<%= task.completed %>" == 'true')
+				check.checked = true;
+		}
+		
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="./js/main.js"></script>
+</body>
+</html>

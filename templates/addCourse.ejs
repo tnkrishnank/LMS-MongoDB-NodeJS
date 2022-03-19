@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ADD COURSE</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="./images/icons/flashcard_icon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/util.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0 d-flex justify-content-center">
+				<form class="login0-form validate-form" method="post" action="/addCourse">
+					<span class="login0-form-title">
+						ADD COURSE
+					</span>
+
+					<div class="wrap-input0">
+						<input class="form-control" type="text" name="name" placeholder="Name" required>
+					</div>
+
+                    <div class="wrap-input0">
+						<textarea class="form-control" type="text" rows="3" name="description" placeholder="Description" required></textarea>
+					</div>
+
+                    <div class="wrap-input0">
+						<input class="form-control" type="text" name="link" placeholder="Youtube Link" required>
+					</div>
+
+					<span class="login0-form-title d-flex p-t-20" style="align-items: center; justify-content: center; padding-bottom: 15px; font-size: 20px;">
+						COMPLETED
+						<div style="padding-left: 20px;">
+							<label class="switch">
+								<input type="checkbox" name = "status" value="true">
+								<span class="slider round"></span>
+							</label>
+						</div>
+					</span>
+					
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" type="submit">
+							ADD
+						</button>
+					</div>
+
+					<div class="text-center p-t-80">
+						<a class="txt2" href="/dashboard">
+							<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+                            GO TO HOME
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="./vendor/bootstrap/js/popper.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./vendor/select2/select2.min.js"></script>
+	<script src="./vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+    </script>
+	<script src="./js/main.js"></script>
+</body>
+</html>

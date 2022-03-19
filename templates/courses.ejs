@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>COURSES</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="./images/icons/flashcard_icon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/util.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0 d-flex justify-content-center">
+				<form class="login0-form validate-form" method="post">
+					<span class="login0-form-title">
+						COURSES
+					</span>
+                    
+					<form class="login0-form validate-form w-100" method="post" action="/courses">
+                        <% if (courses) { %>
+                            <ol>
+                                <% for (let i = 0; i < courses.length; i++) { %>
+                                    <li>
+                                        <div class="container-login0-form-btn">
+                                            <button class="login0-form-btn" value="<%= courses[i]._id %>" name="selectedCourse" type="submit">
+                                                <%= courses[i].cname %>
+                                            </button>
+                                        </div>
+                                    </li>
+                                <% } %>
+                            </ol>
+                        <% } %>
+
+						<div class="text-center p-t-80">
+							<a class="txt2" href="/dashboard">
+								<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+								GO TO HOME
+							</a>
+						</div>
+                    </form>
+				</form>
+
+				<div class="container-login0-form-btn fixed-bottom">
+					<button class="login3-form-btn" style="border-radius: 0%;" id="addCourse" type="button">
+						ADD COURSE
+					</button>
+				</div>
+
+				<script type="text/javascript">
+					document.getElementById("addCourse").onclick = function () {
+						location.href = "/addCourse";
+					};
+				</script>
+			</div>
+		</div>
+	</div>
+	
+	<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../static/vendor/bootstrap/js/popper.js"></script>
+	<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../static/vendor/select2/select2.min.js"></script>
+	<script src="../static/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="../static/js/main.js"></script>
+</body>
+</html>

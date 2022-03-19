@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>DASHBOARD</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="./images/icons/flashcard_icon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/util.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0 d-flex justify-content-center">
+				<form class="login0-form validate-form w-100" method="post">
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="login0-form-title pl-3 pb-0" style="text-align: left !important;">
+							Hello, <%= user.name %>
+						</div>
+
+						<div class="pr-0 pl-0">
+							<button class="login1-form-btn" name="logout" value="signout" type="submit">
+								LOGOUT
+							</button>
+						</div>
+					</div>
+
+					<div class="pr-2 pl-2">
+						<hr class="mb-0" color="white">
+					</div>
+
+                    <div class="container-login0-form-btn">
+						<button class="login0-form-btn" id="taskManager" type="button">
+							TASK MANAGER
+						</button>
+					</div>
+
+                    <script type="text/javascript">
+                        document.getElementById("taskManager").onclick = function () {
+                            location.href = "/taskManager";
+                        };
+                    </script>
+
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" id="courses" type="button">
+							COURSES
+						</button>
+					</div>
+
+                    <script type="text/javascript">
+                        document.getElementById("courses").onclick = function () {
+                            location.href = "/courses";
+                        };
+                    </script>
+
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" id="profile" type="button">
+							PROFILE
+						</button>
+					</div>
+
+                    <script type="text/javascript">
+                        document.getElementById("profile").onclick = function () {
+                            location.href = "/profile";
+                        };
+                    </script>
+
+                    <div class="text-center p-t-50">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="./vendor/bootstrap/js/popper.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./vendor/select2/select2.min.js"></script>
+	<script src="./vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="./js/main.js"></script>
+</body>
+</html>
