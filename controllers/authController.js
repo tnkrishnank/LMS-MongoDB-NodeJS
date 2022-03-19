@@ -120,7 +120,8 @@ module.exports.signup_post = async (req, res) => {
         const user = new User({
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            userImg: "./images/noProfile.jpg"
         });
         user.save()
             .then((result) => {
