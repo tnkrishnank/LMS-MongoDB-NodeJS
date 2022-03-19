@@ -34,6 +34,45 @@ module.exports.signup_get = (req, res) => {
     }
 }
 
+module.exports.signup_post = async (req, res) => {
+    const { name, email, password } = req.body;
+
+    try {
+        if(req.body.password != req.body.rpassword)
+        {
+            res.render('signup', {
+                msg: "Passwords do not match !"
+            });
+        }
+        else if(req.body.password.length < 8)
+        {
+            res.render('signup', {
+                msg: "Minimum password length is 8 characters !"
+            });
+        }
+        else
+        {
+            const user = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                userImg: "./images/noProfile.jpg"
+            });
+            user.save()
+                .then((result) => {
+                    const token = createToken(result._id);
+                    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+                    res.redirect(301, '/dashboard');
+                });
+        }
+    }
+    catch(err) {
+        res.render('signup', {
+            msg: "Invalid Email or Password !"
+        });
+    }
+}
+
 module.exports.login_get = (req, res) => {
     const token = req.cookies.jwt;
 
@@ -71,30 +110,6 @@ module.exports.login_post = async (req, res) => {
     } 
     catch(err) {
         res.render('index', {
-            msg: "Invalid Email or Password !"
-        });
-    }
-}
-
-module.exports.signup_post = async (req, res) => {
-    const { name, email, password } = req.body;
-
-    try {
-        const user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            userImg: "./images/noProfile.jpg"
-        });
-        user.save()
-            .then((result) => {
-                const token = createToken(result._id);
-                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-                res.redirect(301, '/dashboard');
-            });
-    }
-    catch(err) {
-        res.render('signup', {
             msg: "Invalid Email or Password !"
         });
     }
