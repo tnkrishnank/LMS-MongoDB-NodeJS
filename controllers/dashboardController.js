@@ -178,7 +178,7 @@ module.exports.profile_post = async (req, res) => {
                     .then((data) => {
                         data.name = req.body.name;
                         data.email = req.body.email;
-                        //data.userImg
+                        data.userImg = req.body.profileImg;
                         data.save();
                     });
                 
