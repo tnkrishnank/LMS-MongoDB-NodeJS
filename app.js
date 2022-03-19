@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const express = require('express');
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const crudRoutes = require('./routes/crudRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
-//const { checkUser } = require('./middleware/authMiddleware');
+const { checkUser } = require('./middleware/authMiddleware');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -28,7 +28,7 @@ mongoose.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
   })
   .catch((err) => console.log(err));
 
-//app.get('*', checkUser);
+app.get('*', checkUser);
 
 app.use((req, res) => {
     res.status(400).render('404');
