@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 
 const Schema = mongoose.Schema;
@@ -22,7 +21,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        minlength: [8, 'Minimum password length is 8 characters']
+        minlength: [8, 'Minimum password length is 8 characters !']
     },
     tasks: {
         type: Array
