@@ -1,39 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
-const handleErrors = (err) => {
-    console.log(err.message, err.code);
-    let errors = { email: '', password: '' };
-
-    // incorrect email
-    if (err.message === 'incorrect email') {
-    errors.email = 'That email is not registered';
-    }
-
-    // incorrect password
-    if (err.message === 'incorrect password') {
-    errors.password = 'That password is incorrect';
-    }
-
-    // duplicate email error
-    if (err.code === 11000) {
-    errors.email = 'that email is already registered';
-    return errors;
-    }
-
-    // validation errors
-    if (err.message.includes('user validation failed')) {
-    // console.log(err);
-    Object.values(err.errors).forEach(({ properties }) => {
-        // console.log(val);
-        // console.log(properties);
-        errors[properties.path] = properties.message;
-    });
-    }
-
-    return errors;
-}
-
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
     return jwt.sign({ id }, 'key', {
@@ -50,9 +17,7 @@ module.exports.signup_get = (req, res) => {
             if(err)
             {
                 res.render('signup', {
-                    usrMsg: "",
-                    mailMsg: "",
-                    psswdMsg: ""
+                    msg: ""
                 });
             }
             else
@@ -64,9 +29,7 @@ module.exports.signup_get = (req, res) => {
     else
     {
         res.render('signup', {
-            usrMsg: "",
-            mailMsg: "",
-            psswdMsg: ""
+            msg: ""
         });
     }
 }
@@ -80,8 +43,7 @@ module.exports.login_get = (req, res) => {
             if(err)
             {
                 res.render('index', {
-                    usrMsg: "",
-                    passMsg: ""
+                    msg: ""
                 });
             }
             else
@@ -93,8 +55,7 @@ module.exports.login_get = (req, res) => {
     else
     {
         res.render('index', {
-            usrMsg: "",
-            passMsg: ""
+            msg: ""
         });
     }
 }
@@ -109,7 +70,9 @@ module.exports.login_post = async (req, res) => {
         res.redirect(301, '/dashboard');
     } 
     catch(err) {
-        res.redirect(301, '/');
+        res.render('index', {
+            msg: "Invalid Email or Password !"
+        });
     }
 }
 
@@ -131,7 +94,8 @@ module.exports.signup_post = async (req, res) => {
             });
     }
     catch(err) {
-        console.log(err);
-        res.redirect(301, '/');
+        res.render('signup', {
+            msg: "Invalid Email or Password !"
+        });
     }
 }
