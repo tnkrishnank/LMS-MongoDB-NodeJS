@@ -10,8 +10,7 @@ const userSchema = new Schema({
         required: true
     },
     userImg: {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     email: {
         type: String,
