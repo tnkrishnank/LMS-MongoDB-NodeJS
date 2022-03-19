@@ -57,6 +57,18 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+					
+					<span class="text-warning d-flex justify-content-center">
+						<label></label>
+					</span>
+					
+					<div class="wrap-input0">
+						<input class="input0" type="password" name="rpassword" id="rpass" placeholder="Password" required>
+						<span class="focus-input0"></span>
+						<span class="symbol-input0">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 
 					<span class="text-warning d-flex justify-content-center">
 						<label><%= msg %></label>
@@ -99,12 +111,15 @@
 	<script>
 		function showPass() {
 		  var x = document.getElementById("pass");
+		  var y = document.getElementById("rpass");
 		  if (x.type === "password") {
 			x.type = "text";
+			y.type = "text";
 			document.getElementById("sPass").style.cssText = 'background-color: #fff; color: #000;';
 			document.getElementById('sPass').textContent = 'HIDE PASSWORD';
 		  } else {
 			x.type = "password";
+			y.type = "password";
 			document.getElementById("sPass").style.cssText = 'background-color: #000; color: #fff;';
 			document.getElementById('sPass').textContent = 'SHOW PASSWORD';
 		  }
