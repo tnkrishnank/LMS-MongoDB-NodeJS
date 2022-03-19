@@ -23,9 +23,8 @@
 							PROFILE
 						</div>
 
-						<div class="pr-0 pl-0">
-							<img src="" alt="profile_pic">
-						</div>
+						<img id="profileImg" alt="Change Profile" src="" style="cursor: pointer; height: 90px; width: 90px; border-radius: 50%;">
+						<input type="file" accept="image/*" id="profileUpload" style="display: none">
 					</div>
 
 					<div class="pr-2 pl-2 p-b-40">
@@ -80,14 +79,31 @@
 		function func() {
 			var name = document.querySelector('input[name="name"]');
 			var email = document.querySelector('input[name="email"]');
+			var image = document.getElementById("profileImg");
 
 			name.value = "<%= data.name %>";
 			email.value = "<%= data.email %>";
+			image.src = "<%= data.userImg %>";
+			image.value = "<%= data.userImg %>";
 		}
 
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+	</script>
+	<script type="text/javascript">
+		window.onload = function () {
+			var profileUpload = document.getElementById("profileUpload");
+			var image = document.getElementById("profileImg");
+
+			image.onclick = function () {
+				profileUpload.click();
+			};
+			profileUpload.onchange = function () {
+				image.src = window.URL.createObjectURL(this.files[0]);
+				image.value = window.URL.createObjectURL(this.files[0]);
+			};
+		};
 	</script>
 	<script src="./js/main.js"></script>
 </body>
